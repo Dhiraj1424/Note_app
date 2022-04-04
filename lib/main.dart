@@ -3,6 +3,7 @@ import 'package:note_app/pages/add.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:note_app/pages/showData.dart';
 
 
 void main() async {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.dark
       ),
-      home:  AddPage(),
+      home:  ShowData(),
     );
   }
 }

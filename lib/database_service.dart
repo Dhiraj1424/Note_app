@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore firestore = FirebaseFirestore.instance;
+FirebaseFirestore firestore =FirebaseFirestore.instance;
 
 class DatabaseService{
 static Future<void> addData(String title, String details)async{
