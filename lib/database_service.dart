@@ -15,8 +15,15 @@ firestore.collection('notes').add({
 }
 
 static Future<void>deletedata(String id)async{
-  firestore.collection('notes').doc(id).delete();
+  await firestore.collection('notes').doc(id).delete();
 }
 
-  static void updateData(id, title, detail) {}
+  static Future<void> updateData(String id, String title, String detail) async {
+    firestore.collection('notes').doc(id).update({
+      'title':title,
+      'detail':detail,
+    }
+      
+    );
+  }
 }

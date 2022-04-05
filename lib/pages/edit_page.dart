@@ -29,7 +29,7 @@ class EditData extends StatelessWidget {
               decoration:  InputDecoration(
                   hintText: 'please enter title',
                   labelText: "$title",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)))),
               maxLength: 20,
             ),
@@ -47,15 +47,15 @@ class EditData extends StatelessWidget {
               decoration:  InputDecoration(
                   hintText: 'please enter details',
                   labelText: '$detail',
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)))),
             ),
             const SizedBox(height: 20,),
             ElevatedButton(onPressed: (){
               if (_formKey.currentState!.validate()) {
-                DatabaseService.addData(titlec.text, detailc.text);
+                DatabaseService.updateData(id!, titlec.text, detailc.text);
               }
-            }, child: Text('Update'),
+            }, child:const  Text('Update'),
             style: ButtonStyle(
               minimumSize: MaterialStateProperty.all(Size(double.infinity, 20))
             ),
