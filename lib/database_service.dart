@@ -14,4 +14,7 @@ firestore.collection('notes').add({
 );
 }
 
+static Future<void>deletedata(String id)async{
+  firestore.collection('notes').doc(id).delete();
+}
 }

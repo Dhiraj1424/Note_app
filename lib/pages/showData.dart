@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:note_app/database_service.dart';
 import 'package:note_app/pages/add.dart';
 
 class ShowData extends StatefulWidget {
@@ -33,14 +34,23 @@ class _ShowDataState extends State<ShowData> {
             itemCount: snapShoot.data!.docs.length,
             itemBuilder: (context,indext){
               final res=snapShoot.data!.docs[indext];
-            return Card(
-              
-              child: ExpansionTile(title: Text('${res['title']} '),
-              children: [
-                Text('${res['detail']}'),
-              ],
-              leading: IconButton(onPressed: (){},icon: Icon(Icons.edit), ),
-              )
+            return Dismissible(
+              key: UniqueKey(),
+              background: Container(
+                color: Colors.red,
+              ),
+              onDismissed: (v){
+                DatabaseService.deletedata(res.id);
+              },
+              child: Card(
+                
+                child: ExpansionTile(title: Text('${res['title']} '),
+                children: [
+                  Text('${res['detail']}'),
+                ],
+                leading: IconButton(onPressed: (){},icon: Icon(Icons.edit), ),
+                )
+              ),
             );
           });
         })
