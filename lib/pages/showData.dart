@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:note_app/database_service.dart';
 import 'package:note_app/pages/add.dart';
 
+import 'edit_page.dart';
+
 class ShowData extends StatefulWidget {
   const ShowData({ Key? key }) : super(key: key);
 
@@ -11,8 +13,8 @@ class ShowData extends StatefulWidget {
 }
 
 class _ShowDataState extends State<ShowData> {
-  navigation(BuildContext context){
-    Navigator.push(context,   MaterialPageRoute(builder: (_)=>AddPage()));
+  navigation(BuildContext context, Widget next){
+    Navigator.push(context,   MaterialPageRoute(builder: (_)=>next));
   }
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _ShowDataState extends State<ShowData> {
        floatingActionButton: FloatingActionButton(onPressed: (
        
        ){
-         navigation(context);
+         navigation(context, AddPage());
        },
       child: Icon(Icons.add),),
       body:StreamBuilder(
@@ -48,7 +50,13 @@ class _ShowDataState extends State<ShowData> {
                 children: [
                   Text('${res['detail']}'),
                 ],
-                leading: IconButton(onPressed: (){},icon: Icon(Icons.edit), ),
+                leading: IconButton(onPressed: (){
+                  navigation(context, EditData(
+                    id: res.id,
+                    title:res['title'],
+                    detail: res['detail'],
+                  ));
+                },icon: Icon(Icons.edit), ),
                 )
               ),
             );
